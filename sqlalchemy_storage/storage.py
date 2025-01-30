@@ -13,7 +13,7 @@ from sqlalchemy import Select, Update, Delete
 from sqlalchemy.ext.asyncio import AsyncSession
 import json
 
-from .models import declare_models, FSMData
+from .models import declare_models
 
 _JsonLoads = Callable[..., Any]
 _JsonDumps = Callable[..., str]
@@ -23,7 +23,7 @@ class SQLAlchemyStorage(BaseStorage):
     def __init__(
             self,
             session: sessionmaker[AsyncSession],
-            base=None,
+            base: Any,
             table_name: Optional[str] = 'aiogram_fsm_data',
             key_builder: Optional[KeyBuilder] = None,
             json_dumps: _JsonDumps = json.dumps,

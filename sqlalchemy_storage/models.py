@@ -1,6 +1,5 @@
 from typing import Type
 
-from sqlalchemy.orm import declarative_base
 from sqlalchemy import String, Column
 
 class FSMData:
