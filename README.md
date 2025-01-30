@@ -10,10 +10,10 @@
 - JSON serialization customization
 
 ## Installation
-Ensure you have `aiogram` and `SQLAlchemy` installed in your environment:
+Use `pip` to install in your environment:
 
 ```sh
-pip install aiogram sqlalchemy
+pip install aiogram-sqlalchemy-storage
 ```
 
 ## Usage
