@@ -22,14 +22,16 @@ pip install aiogram-sqlalchemy-storage
 ```python
 # db.py
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
+from sqlalchemy.orm import declarative_base
 from sqlalchemy_storage import SQLAlchemyStorage
 
 # Create an async engine
 engine = create_async_engine("sqlite+aiosqlite:///database.db")
 SessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+Base = declarative_base()
 
 # Initialize the storage
-storage = SQLAlchemyStorage(session=SessionLocal)
+storage = SQLAlchemyStorage(SessionLocal, Base)
 ```
 
 ### Parameters
@@ -39,7 +41,7 @@ The `SQLAlchemyStorage` constructor accepts the following parameters:
 def __init__(
     self,
     session: sessionmaker[AsyncSession],  # Async database session
-    base=None,                            # Optional declarative base
+    base: Any,                            # Declarative base
     table_name: Optional[str] = 'aiogram_fsm_data',  # Custom table name
     key_builder: Optional[KeyBuilder] = None,       # Custom key-building strategy
     json_dumps: _JsonDumps = json.dumps,            # Custom JSON serialization
