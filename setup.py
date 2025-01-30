@@ -16,7 +16,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Your Name",
     author_email="your.email@example.com",
-    url="https://github.com/yourusername/aiogram-sqlalchemy-storage",
+    url="https://github.com/meshya/aiogram-sqlalchemy-storage",
     packages=find_packages(),
     install_requires=[
         "aiogram>=3",
