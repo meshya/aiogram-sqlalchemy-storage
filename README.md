@@ -1,5 +1,14 @@
 # SQLAlchemyStorage for aiogram FSM
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/meshya/aiogram-sqlalchemy-storage/publish.yaml)
+
+![PyPI - License](https://img.shields.io/pypi/l/aiogram-sqlalchemy-storage)
+
+![PyPI - Version](https://img.shields.io/pypi/v/aiogram-sqlalchemy-storage)
+
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/aiogram-sqlalchemy-storage)
+
+
 ## Overview
 `SQLAlchemyStorage` is a storage module for `aiogram`'s finite state machine (FSM) using SQLAlchemy as the backend. It provides an efficient and flexible way to persist FSM state and data using an asynchronous database session.
 
