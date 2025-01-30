@@ -1,16 +1,8 @@
 from setuptools import setup, find_packages
 
-import subprocess
-
-def get_version():
-    try:
-        return subprocess.check_output(["git", "describe", "--tags", "--always"]).strip().decode()
-    except Exception:
-        return "0.1.0"
-
 setup(
     name="aiogram-sqlalchemy-storage",
-    version=get_version(),
+    version='v0.1.1-2',
     description="SQLAlchemy-based storage for aiogram FSM",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
