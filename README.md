@@ -8,15 +8,8 @@
 
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/aiogram-sqlalchemy-storage)
 
-
 ## Overview
-`SQLAlchemyStorage` is a storage module for `aiogram`'s finite state machine (FSM) using SQLAlchemy as the backend. It provides an efficient and flexible way to persist FSM state and data using an asynchronous database session.
-
-## Features
-- Asynchronous support with `AsyncSession`
-- Customizable table name for storing FSM data
-- Pluggable key-building strategy
-- JSON serialization customization
+`SQLAlchemyStorage` is a storage backend for `aiogram`'s finite state machine (FSM) using SQLAlchemy. It provides an efficient and flexible way to persist FSM state and data using an asynchronous database session.
 
 ## Installation
 Use `pip` to install in your environment:
@@ -25,64 +18,42 @@ Use `pip` to install in your environment:
 pip install aiogram-sqlalchemy-storage
 ```
 
-## Usage
+## Quick Start
 
-### Import and Setup
 ```python
-# db.py
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import declarative_base
 from sqlalchemy_storage import SQLAlchemyStorage
+from aiogram import Bot, Dispatcher
 
-# Create an async engine
+# Setup database
 engine = create_async_engine("sqlite+aiosqlite:///database.db")
 SessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 Base = declarative_base()
 
-# Initialize the storage
-storage = SQLAlchemyStorage(SessionLocal, Base)
-```
+# Initialize storage
+storage = SQLAlchemyStorage(sessionmaker=SessionLocal, metadata=Base.metadata)
 
-### Parameters
-The `SQLAlchemyStorage` constructor accepts the following parameters:
-
-```python
-def __init__(
-    self,
-    session: sessionmaker[AsyncSession],  # Async database session
-    base: Any,                            # Declarative base
-    table_name: Optional[str] = 'aiogram_fsm_data',  # Custom table name
-    key_builder: Optional[KeyBuilder] = None,       # Custom key-building strategy
-    json_dumps: _JsonDumps = json.dumps,            # Custom JSON serialization
-    json_loads: _JsonLoads = json.loads,            # Custom JSON deserialization
-):
-```
-
-### Example Integration with aiogram
-```python
-# bot.py
-from db import storage
-from aiogram import Bot, Dispatcher
-
+# Setup bot
 bot = Bot(token="YOUR_BOT_TOKEN")
 dp = Dispatcher(storage=storage)
 ```
+## Features
+- Asynchronous support with `AsyncSession`
+- Customizable table name for storing FSM data
+- Pluggable key-building strategy
+- JSON serialization customization
 
-## Database Schema
-By default, `SQLAlchemyStorage` creates a table named `aiogram_fsm_data` to store FSM-related data. You can customize this by passing a different table name during initialization.
+## Documentation
 
-## Custom Key Builder
-If you need a custom key-building strategy, pass an instance of `KeyBuilder` to the `key_builder` parameter.
+For detailed documentation, configuration options, and advanced usage, see:
 
-## Custom JSON Serialization
-You can override the default JSON serialization and deserialization methods using the `json_dumps` and `json_loads` parameters.
+- [Quick Setup Guide](docs/quick_setup.md)
+- [Storage Documentation](docs/storage.md)
 
 ## License
 MIT License
 
 ## Contributions
 Contributions are welcome! Feel free to submit issues or pull requests on the repository.
-
----
-This module provides an efficient way to manage FSM data storage using SQLAlchemy with aiogram, ensuring scalability and flexibility in bot development.
 
