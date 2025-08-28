@@ -9,6 +9,11 @@ class FSMData:
 
 
 def declare_models(base, tablename)->Type[FSMData]:
-    class _FSMData(FSMData, base):
-        __tablename__ = tablename
-    return _FSMData
+    new_cls = type('StorageModel', (base,), 
+                    {
+                        '__tablename__': tablename,
+                        'id': Column(String, primary_key=True),
+                        'state': Column(String, nullable=True),
+                        'data': Column(String, nullable=True)
+                    })
+    return new_cls
