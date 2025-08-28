@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name="aiogram-sqlalchemy-storage",
-    version='v0.1.1-2',
+    version='v0.2.0-0',
     description="SQLAlchemy-based storage for aiogram FSM",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="meshya",
+    author_email="meshmeshmeshya@gmail.com",
     url="https://github.com/meshya/aiogram-sqlalchemy-storage",
     packages=find_packages(),
     install_requires=[
