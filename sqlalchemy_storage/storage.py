@@ -36,7 +36,7 @@ class SQLAlchemyStorage(BaseStorage):
                     "Passing Base is deprecated. \n"
                     "Please pass an instance of MetaData instead. \n"
                     "For example: SQLAlchemyStorage(metadata=Base.metadata) \n",
-                    DeprecationWarning,
+                    UserWarning,
                 )
                 metadata = metadata.metadata
             if not isinstance(metadata, MetaData):
@@ -97,7 +97,7 @@ class SQLAlchemyStorage(BaseStorage):
                     new_row = self._model(id=pk, state=dump_state, data=None)
                     session.add(new_row)
             if dump_state is None:
-                data = await self.get_data()
+                data = await self.get_data(key)
                 if not data:
                     await session.execute(
                         Delete(self._model).where(
@@ -141,7 +141,7 @@ class SQLAlchemyStorage(BaseStorage):
                     new_row = self._model(id=pk, data=data, state=None)
                     session.add(new_row)
             if not data:
-                if not await self.get_state():
+                if not await self.get_state(key):
                     await session.execute(
                         Delete(self._model).where(
                             self._model.id == pk
