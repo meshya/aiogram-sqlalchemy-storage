@@ -50,6 +50,11 @@ For detailed documentation, configuration options, and advanced usage, see:
 
 - [Quick Setup Guide](docs/quick_setup.md)
 - [Storage Documentation](docs/storage.md)
+- [Manage DB Migrations](docs/db_migrations.md)
+- [Database model](docs/database_model.md)
+
+## Change Log
+- [Change Log](./CHANGELOG.md)
 
 ## License
 MIT License
